@@ -1,41 +1,27 @@
 #include "Teacher.h"
 #include <iostream>
 Teacher::Teacher()
+	:BaseClass()
 {
-	id = "0";
-	surname = "Unknown";
-	name = "Unknown";
-	fatherName = "Unknown";
-	data.day = 0;
-	data.mounth = 0;
-	data.year = 1980;
-	phone = "+000000000000";
-	branch = "Math";
+	lesson = "Math";
 }
 
-Teacher::Teacher(std::string Id, std::string Surname, std::string Name, std::string FatherName, int day, int mon, int year, int Phone, int Branch)
+Teacher::Teacher(std::string Id, std::string Surname, std::string Name, std::string FatherName, int day, int mon, int year, std::string Phone, std::string Branch, std::string les)
+	: BaseClass(Id, Surname, Name, FatherName, day, mon, year, Phone, Branch)
 {
-	id = id;
-	surname = Surname;
-	name = Name;
-	fatherName = FatherName;
-	data.day = day;
-	data.mounth = mon;
-	data.year = year;
-	phone = Phone;
-	branch = Branch;
+	lesson = les;
 }
 
 std::istream& operator>>(std::istream& in, Teacher& t)
 {
 	std::cout << "Enter ID";
-	in >> t.id;
+	in >> t.m_id;
 	std::cout << "Family name:";
-	in >> t.surname;
+	in >> t.m_familyName;
 	std::cout << "Name: ";
-	in >> t.name;
+	in >> t.m_name;
 	std::cout << "Father name: ";
-	in >> t.fatherName;
+	in >> t.m_fatherName;
 	std::cout << "Day of birth: ";
 	std::cin >> t.data.day;
 	std::cout << "Mounth of birth: ";
@@ -52,8 +38,8 @@ std::istream& operator>>(std::istream& in, Teacher& t)
 }
 std::ostream& operator<<(std::ostream& out, Teacher& t)
 {
-	std::cout << "Id: " << t.id << std::endl;
-	std::cout << t.surname << " " << t.name << " " << t.fatherName << std::endl;
+	std::cout << "Id: " << t.m_id << std::endl;
+	std::cout << t.m_familyName << " " << t.m_name << " " << t.m_fatherName << std::endl;
 	std::cout << "Birth " << t.data.day << ":" << t.data.mounth << ":" << t.data.year << std::endl;
 	std::cout << t.phone << std::endl;
 	std::cout << t.branch << std::endl;
@@ -63,13 +49,13 @@ std::ostream& operator<<(std::ostream& out, Teacher& t)
 
 bool operator==(const Teacher& t1, const Teacher& t2)
 {
-	if (t1.id != t2.id)
+	if (t1.m_id != t2.m_id)
 		return false;
-	else if (t1.surname != t2.surname)
+	else if (t1.m_familyName != t2.m_familyName)
 		return false;
-	else if (t1.name != t2.name)
+	else if (t1.m_name != t2.m_name)
 		return false;
-	else if (t1.fatherName != t2.fatherName)
+	else if (t1.m_fatherName != t2.m_fatherName)
 		return false;
 	else if (t1.data.day != t2.data.day)
 		return false;
