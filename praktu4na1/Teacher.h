@@ -21,6 +21,8 @@ private:
 public:
 	Teacher();
 	Teacher(std::string Id, std::string Surname, std::string Name, std::string FatherName, int day, int mon, int year, int Phone, int Branch);
+	friend std::istream& operator>>(std::istream& in, Teacher& t);
+	friend std::ostream& operator<<(std::ostream& out, Teacher& t);
+	friend bool operator==(const Teacher& t1, const Teacher& t2);
 
 };
-
